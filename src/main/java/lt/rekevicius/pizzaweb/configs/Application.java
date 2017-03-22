@@ -1,4 +1,4 @@
-package lt.rekevicius.pizzaweb.config;
+package lt.rekevicius.pizzaweb.configs;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * Created by Mindaugas on 2017-03-19.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "lt.rekevicius.pizzaweb.*")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
