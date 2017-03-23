@@ -1,4 +1,4 @@
-package lt.rekevicius.pizzaweb.repositories.specifications;
+package lt.rekevicius.pizzaweb.core.repositories.specifications;
 
 import lt.rekevicius.pizzaweb.core.entities.Entity;
 

@@ -1,8 +1,8 @@
-package lt.rekevicius.pizzaweb.repositories.impl;
+package lt.rekevicius.pizzaweb.core.repositories.impl;
 
 import lt.rekevicius.pizzaweb.core.entities.impl.Pizza;
-import lt.rekevicius.pizzaweb.repositories.PizzaEntityRepository;
-import lt.rekevicius.pizzaweb.repositories.specifications.PizzaQuerySpecification;
+import lt.rekevicius.pizzaweb.core.repositories.PizzaEntityRepository;
+import lt.rekevicius.pizzaweb.core.repositories.specifications.PizzaQuerySpecification;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -20,6 +20,7 @@ public class PizzaEntityRepositoryInMemoryImpl implements PizzaEntityRepository 
 
     @Override
     public void add(Pizza entity) {
+        Long id = generateId();
         entity.setId(id);
         pizzaMap.put(id, entity);
         id++;
@@ -50,5 +51,14 @@ public class PizzaEntityRepositoryInMemoryImpl implements PizzaEntityRepository 
             }
         }
         return pizzas;
+    }
+
+    private Long generateId() {
+        Long id = PizzaEntityRepositoryInMemoryImpl.id;
+        while (pizzaMap.containsKey(id)) {
+            id++;
+        }
+        PizzaEntityRepositoryInMemoryImpl.id = id;
+        return id;
     }
 }

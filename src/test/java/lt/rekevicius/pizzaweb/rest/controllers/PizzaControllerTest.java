@@ -1,9 +1,8 @@
 package lt.rekevicius.pizzaweb.rest.controllers;
 
 import lt.rekevicius.pizzaweb.core.entities.impl.Pizza;
-import lt.rekevicius.pizzaweb.repositories.specifications.PizzaQuerySpecification;
-import lt.rekevicius.pizzaweb.repositories.specifications.QuerySpecification;
-import lt.rekevicius.pizzaweb.repositories.PizzaEntityRepository;
+import lt.rekevicius.pizzaweb.core.repositories.specifications.PizzaQuerySpecification;
+import lt.rekevicius.pizzaweb.core.repositories.PizzaEntityRepository;
 import lt.rekevicius.pizzaweb.rest.resources.asm.PizzaResourceAsm;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,9 +1,8 @@
-package lt.rekevicius.pizzaweb.repositories.impl;
+package lt.rekevicius.pizzaweb.core.repositories.impl;
 
 import lt.rekevicius.pizzaweb.core.entities.impl.Pizza;
-import lt.rekevicius.pizzaweb.repositories.PizzaEntityRepository;
-import lt.rekevicius.pizzaweb.repositories.specifications.PizzaQuerySpecification;
-import lt.rekevicius.pizzaweb.repositories.specifications.QuerySpecification;
+import lt.rekevicius.pizzaweb.core.repositories.PizzaEntityRepository;
+import lt.rekevicius.pizzaweb.core.repositories.specifications.PizzaQuerySpecification;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;

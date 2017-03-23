@@ -1,7 +1,7 @@
-package lt.rekevicius.pizzaweb.repositories;
+package lt.rekevicius.pizzaweb.core.repositories;
 
 import lt.rekevicius.pizzaweb.core.entities.Entity;
-import lt.rekevicius.pizzaweb.repositories.specifications.QuerySpecification;
+import lt.rekevicius.pizzaweb.core.repositories.specifications.QuerySpecification;
 
 import java.util.List;
 
