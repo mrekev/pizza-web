@@ -13,7 +13,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
  * Created by Mindaugas on 2017-03-22.
  */
 @Service
-public class PizzaResourceAsm extends ResourceAssemblerSupport<Pizza, PizzaResource> {
+public class PizzaResourceAsm extends ResourceEntityAssemblerSupport<Pizza, PizzaResource> {
 
     public PizzaResourceAsm() {
         super(PizzaController.class, PizzaResource.class);
@@ -26,5 +26,12 @@ public class PizzaResourceAsm extends ResourceAssemblerSupport<Pizza, PizzaResou
         Link link = linkTo(methodOn(PizzaController.class).getPizza(entity.getId())).withSelfRel();
         resource.add(link);
         return resource;
+    }
+
+    @Override
+    public Pizza toEntity(PizzaResource resource) {
+        Pizza pizza = new Pizza();
+        pizza.setTitle(resource.getTitle());
+        return pizza;
     }
 }

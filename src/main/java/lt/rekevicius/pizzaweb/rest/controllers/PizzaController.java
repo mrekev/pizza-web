@@ -50,36 +50,30 @@ public class PizzaController {
 
     @PostMapping("/")
     public void addPizza(@RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
-        Pizza pizza = new Pizza();
-        pizza.setTitle(pizzaResource.getTitle());
+        Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizzaEntityRepository.add(pizza);
-        //TODO add check for success and throw exception if failed
-        String location = "/rest/pizzas/" + pizza.getId();
-        response.setHeader(HttpHeaders.LOCATION, location);
+        response.setHeader(HttpHeaders.LOCATION, getPizzaLocation(pizza));
         response.setStatus(HttpStatus.CREATED.value());
     }
 
     @PutMapping("/{pizzaId}")
     public void updatePizza(@PathVariable Long pizzaId, @RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
-        Pizza pizza = new Pizza();
-        pizza.setTitle(pizzaResource.getTitle());
+        Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizza.setId(pizzaId);
         pizzaEntityRepository.update(pizza);
-        //TODO add check for success and throw exception if failed
-        String location = "/rest/pizzas/" + pizza.getId();
-        response.setHeader(HttpHeaders.LOCATION, location);
+        response.setHeader(HttpHeaders.LOCATION, getPizzaLocation(pizza));
         response.setStatus(HttpStatus.SEE_OTHER.value());
     }
 
     @DeleteMapping("/{pizzaId}")
-    public void deletePizza(@PathVariable Long pizzaId, @RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
-        Pizza pizza = new Pizza();
-        pizza.setTitle(pizzaResource.getTitle());
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePizza(@PathVariable Long pizzaId, @RequestBody PizzaResource pizzaResource) throws IOException {
+        Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizza.setId(pizzaId);
         pizzaEntityRepository.remove(pizza);
-        //TODO add check for success and throw exception if failed
-        String location = "/rest/pizzas/";
-        response.setHeader(HttpHeaders.LOCATION, location);
-        response.setStatus(HttpStatus.SEE_OTHER.value());
+    }
+
+    private String getPizzaLocation(Pizza pizza) {
+        return "/rest/pizzas/" + pizza.getId();
     }
 }
