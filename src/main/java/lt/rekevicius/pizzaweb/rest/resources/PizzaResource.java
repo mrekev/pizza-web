@@ -12,6 +12,8 @@ public class PizzaResource extends ResourceSupport {
 
     private String title;
 
+    private String description;
+
     private List<Ingredient> ingredients;
 
     public String getTitle() {
@@ -28,5 +30,13 @@ public class PizzaResource extends ResourceSupport {
 
     public List<Ingredient> getIngredients() {
         return this.ingredients;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

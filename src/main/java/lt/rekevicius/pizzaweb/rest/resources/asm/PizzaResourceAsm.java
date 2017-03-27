@@ -23,6 +23,7 @@ public class PizzaResourceAsm extends ResourceEntityAssemblerSupport<Pizza, Pizz
     public PizzaResource toResource(Pizza entity) {
         PizzaResource resource = new PizzaResource();
         resource.setTitle(entity.getTitle());
+        resource.setDescription(entity.getDescription());
         resource.setIngredients(entity.getIngredients());
         Link link = linkTo(methodOn(PizzaController.class).getPizza(entity.getId())).withSelfRel();
         resource.add(link);
@@ -33,6 +34,7 @@ public class PizzaResourceAsm extends ResourceEntityAssemblerSupport<Pizza, Pizz
     public Pizza toEntity(PizzaResource resource) {
         Pizza pizza = new Pizza();
         pizza.setIngredients(resource.getIngredients());
+        pizza.setDescription(resource.getDescription());
         pizza.setTitle(resource.getTitle());
         return pizza;
     }
