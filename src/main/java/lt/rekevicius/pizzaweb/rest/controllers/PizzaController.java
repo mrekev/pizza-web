@@ -8,6 +8,8 @@ import lt.rekevicius.pizzaweb.rest.resources.PizzaResource;
 import lt.rekevicius.pizzaweb.rest.resources.asm.PizzaResourceAsm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -53,9 +55,8 @@ public class PizzaController {
         pizzaEntityRepository.add(pizza);
         //TODO add check for success and throw exception if failed
         String location = "/rest/pizzas/" + pizza.getId();
-//        response.setHeader(HttpHeaders.LOCATION, location);
-//        response.setStatus(HttpStatus.CREATED.value());
-        response.sendRedirect(location);
+        response.setHeader(HttpHeaders.LOCATION, location);
+        response.setStatus(HttpStatus.CREATED.value());
     }
 
     @PutMapping("/{pizzaId}")
@@ -66,10 +67,8 @@ public class PizzaController {
         pizzaEntityRepository.update(pizza);
         //TODO add check for success and throw exception if failed
         String location = "/rest/pizzas/" + pizza.getId();
-//        response.setHeader(HttpHeaders.LOCATION, location);
-//        response.setStatus(HttpStatus.CREATED.value());
-        //TODO fix this to stop redirecting to location with PUT method
-        response.sendRedirect(location);
+        response.setHeader(HttpHeaders.LOCATION, location);
+        response.setStatus(HttpStatus.SEE_OTHER.value());
     }
 
     @DeleteMapping("/{pizzaId}")
@@ -80,11 +79,7 @@ public class PizzaController {
         pizzaEntityRepository.remove(pizza);
         //TODO add check for success and throw exception if failed
         String location = "/rest/pizzas/";
-//        response.setHeader(HttpHeaders.LOCATION, location);
-//        response.setStatus(HttpStatus.CREATED.value());
-        //TODO fix this to stop redirecting to location with DELETE method
-        response.sendRedirect(location);
+        response.setHeader(HttpHeaders.LOCATION, location);
+        response.setStatus(HttpStatus.SEE_OTHER.value());
     }
-
-
 }
