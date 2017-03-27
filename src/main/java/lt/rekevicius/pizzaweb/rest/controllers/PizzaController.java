@@ -53,7 +53,7 @@ public class PizzaController {
         Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizzaEntityRepository.add(pizza);
         response.setHeader(HttpHeaders.LOCATION, getPizzaLocation(pizza));
-        response.setStatus(HttpStatus.CREATED.value());
+        response.setStatus(HttpStatus.SEE_OTHER.value());
     }
 
     @PutMapping("/{pizzaId}")

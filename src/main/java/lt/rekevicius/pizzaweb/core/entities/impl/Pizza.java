@@ -1,6 +1,9 @@
 package lt.rekevicius.pizzaweb.core.entities.impl;
 
 import lt.rekevicius.pizzaweb.core.entities.Entity;
+import lt.rekevicius.pizzaweb.core.entities.Ingredient;
+
+import java.util.List;
 
 /**
  * Created by Mindaugas on 2017-03-20.
@@ -8,6 +11,8 @@ import lt.rekevicius.pizzaweb.core.entities.Entity;
 public class Pizza extends Entity {
 
     private String title;
+
+    private List<Ingredient> ingredients;
 
     public String getTitle() {
         return title;
@@ -17,4 +22,11 @@ public class Pizza extends Entity {
         this.title = title;
     }
 
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return this.ingredients;
+    }
 }
