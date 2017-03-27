@@ -3,6 +3,7 @@ package lt.rekevicius.pizzaweb.core.entities;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.text.MessageFormat;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -13,11 +14,28 @@ import java.util.stream.Stream;
  */
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum Ingredient {
+    BACON("Bacon"),
+    BERN_SAUCE("Bern sauce"),
     CHAMPIGNONS("Champignons"),
-    OLIVES("Olives");
+    CHICKEN("Chicken"),
+    CHEESE("Cheese"),
+    HOT_PEPPERS("Hot peppers"),
+    HOT_SAUCE("Hot sauce"),
+    JALAPA_PEPPERS("Jalapa peppers"),
+    MINCED_PORK("Minced pork"),
+    MOULDED_BEEF_HAM("Moulded beef ham"),
+    MOULDED_PORK_HAM("Moulded pork ham"),
+    OLIVES("Olives"),
+    ONIONS("Onions"),
+    PORK_HAM("Pork ham"),
+    PICKLED_BELL_PEPPERS("Pickled bell peppers"),
+    PICKLED_ONIONS("Pickled onions"),
+    SALAMI("Salami"),
+    TOMATOES("Tomatoes"),
+    TUNA("Tuna");
 
     private static Map<String, Ingredient> VALUES = Stream.of(Ingredient.values())
-            .collect(Collectors.toMap(i -> i.value.toUpperCase(), Function.identity()));
+            .collect(Collectors.toMap(ingredient -> ingredient.value.toUpperCase(), Function.identity()));
 
     private String value;
 
@@ -26,12 +44,11 @@ public enum Ingredient {
     }
 
     @JsonCreator
-    public static Ingredient fromString(String string) {
-        Ingredient ingredient = VALUES.get(string.toUpperCase());
-        if (ingredient == null) {
-            throw new IllegalArgumentException(string + " has no corresponding ingredient value");
+    public static Ingredient of(String value) {
+        Ingredient ingredient;
+        if (value == null || null == (ingredient = VALUES.get(value.toUpperCase()))) {
+            throw new IllegalArgumentException(MessageFormat.format("{0} has no corresponding ingredient value", value));
         }
         return ingredient;
     }
-
 }
