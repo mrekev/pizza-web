@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class PizzaController {
     }
 
     @PostMapping("/")
-    public void addPizza(@RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
+    public void addPizza(@Valid @RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
         Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizzaEntityRepository.add(pizza);
         response.setHeader(HttpHeaders.LOCATION, getPizzaLocation(pizza));
@@ -57,7 +59,7 @@ public class PizzaController {
     }
 
     @PutMapping("/{pizzaId}")
-    public void updatePizza(@PathVariable Long pizzaId, @RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
+    public void updatePizza(@PathVariable Long pizzaId, @Valid @RequestBody PizzaResource pizzaResource, HttpServletResponse response) throws IOException {
         Pizza pizza = pizzaResourceAsm.toEntity(pizzaResource);
         pizza.setId(pizzaId);
         pizzaEntityRepository.update(pizza);
