@@ -1,7 +1,6 @@
 package lt.rekevicius.pizzaweb.rest.resources;
 
 import lt.rekevicius.pizzaweb.core.entities.Ingredient;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.hateoas.ResourceSupport;
